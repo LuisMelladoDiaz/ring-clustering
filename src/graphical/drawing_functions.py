@@ -4,7 +4,7 @@ from matplotlib.patches import Circle
 def point(x, y, color='ro'):
     return plt.plot(x, y, color)
 
-def circle(center, radius, thickness=1, color='blue'):
+def circle(center, radius, color='blue', thickness=1):
     return Circle(center, radius, linewidth=thickness, edgecolor=color, fill=False)
 
 

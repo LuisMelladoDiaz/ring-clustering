@@ -3,6 +3,7 @@ from ring_clustering.halting import check_halting
 from ring_clustering.init import Initialization, init_clusters
 from graphical import drawing_functions
 from utils.cluster_generation import build_clusters
+from utils.distances import compute_membership
 
 
 def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL):
@@ -19,6 +20,8 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
         num_iterations +=1
         halt = check_halting(num_iterations,convergence,max_iterations,min_convergence)
         convergence = 100 #Compute convergence here
+
+        membership, points, clusters = compute_membership(clusters, points)
 
     #DRAW RESULT
     points = points + centers
