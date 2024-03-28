@@ -1,10 +1,10 @@
 from graphical import drawing_functions
-import matplotlib.pyplot as plt
+from experimental_data import generate_experiment
 
 def main():
-    points = [(20, 30), (50, 70), (80, 10)]
-    circles = [((40, 40), 15, 2, 'red'), ((70, 50), 20, 1, 'green'), ((30, 50), 30, 1)]
-    drawing_functions.draw_points_and_circles(points,circles)
+    generate_experiment.generate_exp(50,3)
+    points = generate_experiment.parse_experiment()
+    drawing_functions.draw_points_and_circles(points)
 
 
 if __name__ == "__main__":
