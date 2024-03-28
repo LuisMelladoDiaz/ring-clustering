@@ -11,11 +11,11 @@ def circle(center, radius, thickness=1, color='blue'):
 def draw_points_and_circles(points=[], circles=[], spacesize=100, title='Points and Clusters'):
     fig, ax = plt.subplots()
     ax.set_aspect('equal', adjustable='box')
+    print(circles)
     for p in points:
         point(*p)
     for c in circles:
         ax.add_patch(circle(*c))
-        point(*c[0],'kx')
     setup_plot(title,spacesize)
 
 
@@ -24,7 +24,7 @@ def setup_plot(title,spacesize):
     plt.ylabel('Y Axis')
     plt.xlim(0, spacesize)
     plt.ylim(0, spacesize)
-    plt.title('Points and Clusters')
+    plt.title(title)
     plt.grid(True)
     plt.show()
 
