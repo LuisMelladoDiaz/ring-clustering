@@ -1,19 +1,20 @@
 from sympy import symbols, Eq, solve
-from sums import *
 import math
+
+from maths.sums import *
 
 def best_fit_circle(points):
     n = len(points)
     X,Y = extract_coordinates(points)
     A,B,C = solve_system(X,Y,n)
-    h,k = compute_center(A,B,C)
+    h,k = compute_center(A,B)
     radius = compute_radius(A,B,C)
     cluster = ((h,k),radius)
     return cluster
 
 
 def solve_system(X,Y,n):
-    A, B, C = symbols('A','B','C')
+    A, B, C = symbols('A B C')
 
     eq1 = Eq(summation_squares(X)*A
         + summation_productXY(X,Y)*B
@@ -26,8 +27,8 @@ def solve_system(X,Y,n):
     summation_productX_addition_of_sqaresXY(Y,X))
 
     eq3 = Eq(summation(X)*A
-        + summation(Y)
-        + n,
+        + summation(Y)*B
+        + n*C,
     summation_addition_of_sqaresXY(X,Y))
 
     sol = solve((eq1, eq2, eq3), (A, B, C))
@@ -43,7 +44,7 @@ def compute_radius(A,B,C):
 def extract_coordinates(points):
     X = []
     Y = []
-    for x,y,color in points:
+    for x,y,*_ in points:
         X.append(x)
         Y.append(y)
     return X,Y

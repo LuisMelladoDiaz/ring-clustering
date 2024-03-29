@@ -11,7 +11,6 @@ def circle(center, radius, color='blue', thickness=1):
 def draw_points_and_circles(points=[], circles=[], spacesize=100, title='Points and Clusters'):
     fig, ax = plt.subplots()
     ax.set_aspect('equal', adjustable='box')
-    print(circles)
     for p in points:
         point(*p)
     for c in circles:

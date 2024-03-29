@@ -13,12 +13,20 @@ def compute_membership(clusters, points):
         membership[p] = sorted_clusters
     points = points_coloring(points, membership)
     clusters = cluster_coloring(clusters)
-    return membership, points, clusters
+    classification = compute_classification(membership)
+    return membership, classification, points, clusters
+
+def compute_classification(membership):
+    classification = {}
+    for point, clusters in membership.items():
+        closest_cluster = clusters[0]
+        classification.setdefault(closest_cluster, []).append(point)
+    return classification
 
 def distance_point_circle(point, circle):
-    center, radius = circle
-    x,y = point
-    h,k,_ = center
+    center, radius,*_ = circle
+    x,y,*_ = point
+    h,k,*_ = center
 
     distance = abs(math.sqrt((x-h)**2 + (y-k)**2)-radius)
     return distance

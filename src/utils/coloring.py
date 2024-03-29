@@ -2,11 +2,9 @@ import random
 
 def points_coloring(points, membership):
     colored_points = []
-    print (membership)
     for p in points:
-        x,y = p
+        x,y,*_ = p
         color = COLORS[membership[p][0] % 7]
-        print(color)
         colored_points.append((x,y,color))
 
     return colored_points
@@ -14,8 +12,7 @@ def points_coloring(points, membership):
 def cluster_coloring(clusters):
     colored_clusters = []
     for i,c in enumerate(clusters):
-        print(c)
-        center,radius = c
+        center,radius,*_ = c
         color = COLORS_RGB_NORMALIZED[i % 7]
         colored_clusters.append((center,radius,color))
 
