@@ -1,18 +1,21 @@
 from asyncio.windows_events import NULL
+import random
+from experimental_data.experiment_results import save_results
 from maths.best_fit_circle import best_fit_circle
 from ring_clustering.halting import check_halting
 from ring_clustering.init import Initialization, init_clusters
 from graphical import drawing_functions
-from ring_clustering.post_processing import post_processing, remove_equivalent_clusters, remove_noise
+from ring_clustering.post_processing import remove_equivalent_clusters, remove_noise
 from utils.cluster_generation import build_clusters
 from maths.distances import compute_membership
 
 
-def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL, allowed_error = NULL, allowed_cluster_equivalence_rate=NULL):
+def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL, allowed_error = NULL, allowed_cluster_equivalence_rate=NULL, title='Experiment'):
 
     #INITIALIZATION
     centers, radii = init_clusters(num_clusters, initialization, centers_color)
-    clusters = build_clusters(centers,radii)
+    initial_clusters = build_clusters(centers,radii)
+    clusters = initial_clusters
     halt = False
     num_iterations = 0
     convergence = 100
@@ -20,8 +23,6 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
     drawing_functions.draw_points_and_circles(points, clusters, title='Problem')
     membership, classification, points, clusters, error = compute_membership(clusters, points)
     drawing_functions.draw_points_and_circles(points, clusters, title='Initial classes')
-
-
 
     #MAIN LOOP
     while (halt == False):
@@ -44,3 +45,8 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
 
     print('Algorith halted after', num_iterations, 'iteration/s with convergence of', convergence)
     print('Centers', centers)
+
+    #SAVE RESULT
+    experiment_id = random.randint(1, 1000)
+    experiment_results_title = f'{title}_{num_clusters}Clusters_{initialization}_PostProcessing{allowed_error}&{allowed_cluster_equivalence_rate}_{experiment_id}'
+    save_results(points, initial_clusters, clusters, experiment_results_title)
