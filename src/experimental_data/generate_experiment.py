@@ -20,7 +20,7 @@ def generate_csv(points, title):
 
 def parse_experiment(title = 'experiment'):
     points = []
-    filename = f'src/experimental_data/data/{title}.csv'
+    filename = f'src/experimental_data/data/{title}'
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:

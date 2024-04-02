@@ -26,7 +26,7 @@ def evaluate_new_points(new_points, experiment_title):
     draw_points_and_circles(points,clusters,title = experiment_title)
 
 def parse_experiment_results(filename):
-    filename = f'src/experimental_data/data/results/{filename}.csv'
+    filename = f'src/experimental_data/data/results/{filename}'
     points = []
     clusters = []
 
@@ -49,3 +49,12 @@ def parse_experiment_results(filename):
                 clusters.append((center, radius, color))
 
     return points, clusters
+
+def parse_points(points_str):
+    points_str = points_str.get().strip()[1:-1]
+    points_str = points_str.replace('(', '').replace(')', '').split(', ')
+    parsed_points = [(float(coord.split(',')[0]), float(coord.split(',')[1])) for coord in points_str]
+    print(points_str)
+    print(parsed_points)
+
+    return parsed_points
