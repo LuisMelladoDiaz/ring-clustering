@@ -12,7 +12,7 @@ def generate_exp(num_points,num_clusters,min_radius=1,max_radius=20, max_error=0
     generate_csv(points,title)
 
 def generate_csv(points, title):
-    filename = f'src/experimental_data/data/{title}.csv'
+    filename = f'src/experimental_data/data/{title}'
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['x', 'y'])

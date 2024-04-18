@@ -1,7 +1,7 @@
 from ast import literal_eval
 import csv
 
-from graphical.drawing_functions import draw_points_and_circles
+from user_interface.drawing_functions import draw_points_and_circles
 from maths.distances import compute_membership
 
 def save_results(points, initial_clusters, clusters, title):

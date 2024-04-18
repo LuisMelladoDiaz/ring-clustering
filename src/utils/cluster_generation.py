@@ -1,7 +1,7 @@
 import random
 import math
 
-from graphical.drawing_functions import circle
+from user_interface.drawing_functions import circle
 
 def generate_points(num_points, center, radius, error=0.01):
     points = []
