@@ -13,7 +13,7 @@ from maths.distances import compute_membership
 def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL, allowed_error = NULL, allowed_cluster_equivalence_rate=NULL, title='Experiment'):
 
     #INITIALIZATION
-    centers, radii = init_clusters(num_clusters, initialization, centers_color)
+    centers, radii = init_clusters(num_clusters, initialization, centers_color, points)
     initial_clusters = build_clusters(centers,radii)
     clusters = initial_clusters
     halt = False

@@ -49,7 +49,8 @@ def generate_experiment_screen(root):
 def run_algorithm(root):
     def run_algorithm():
         experiment_title = title_combobox.get()
-        initialization = Initialization.RANDOM
+        selected_initialization = initialization_combobox.get()
+        initialization = Initialization[selected_initialization]
         max_iterations = int(max_iterations_entry.get())
         allowed_error = float(allowed_error_entry.get())
         allowed_cluster_equivalence_rate = float(allowed_cluster_equivalence_rate_entry.get())
@@ -73,7 +74,7 @@ def run_algorithm(root):
 
     # Algorithm setup
     ttk.Label(algorithm_window, text="Experiment:").grid(row=0, column=0)
-    experiment_files = [file for file in os.listdir("src/experimental_data/data") if file.endswith('.csv')]
+    experiment_files = [file for file in os.listdir("src/experiments/data") if file.endswith('.csv')]
     title_combobox = ttk.Combobox(algorithm_window, values=experiment_files)
     title_combobox.grid(row=0, column=1)
 
@@ -109,7 +110,7 @@ def revisit_experiment_screen(root):
     results_window.title("Results Screen")
 
     ttk.Label(results_window, text="Experiment Results:").grid(row=0, column=0)
-    experiment_files = [file for file in os.listdir("src/experimental_data/data/results") if file.endswith('.csv')]
+    experiment_files = [file for file in os.listdir("src/experiments/data/results") if file.endswith('.csv')]
     results_combobox = ttk.Combobox(results_window, values=experiment_files,  width=80)
     results_combobox.grid(row=0, column=1)
 
@@ -124,7 +125,7 @@ def evaluate_points_screen(root):
     evaluate_window.title("Evaluate Screen")
 
     ttk.Label(evaluate_window, text="Experiment Results:").grid(row=0, column=0)
-    experiment_files = [file for file in os.listdir("src/experimental_data/data/results") if file.endswith('.csv')]
+    experiment_files = [file for file in os.listdir("src/experiments/data/results") if file.endswith('.csv')]
     results_combobox = ttk.Combobox(evaluate_window, values=experiment_files,  width=80)
     results_combobox.grid(row=0, column=1)
 

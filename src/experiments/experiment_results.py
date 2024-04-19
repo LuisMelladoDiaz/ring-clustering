@@ -5,7 +5,7 @@ from user_interface.drawing_functions import draw_points_and_circles
 from maths.distances import compute_membership
 
 def save_results(points, initial_clusters, clusters, title):
-    filename = f'src/experimental_data/data/results/{title}.csv'
+    filename = f'src/experiments/data/results/{title}.csv'
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['x', 'y', 'color'])
@@ -26,7 +26,7 @@ def evaluate_new_points(new_points, experiment_title):
     draw_points_and_circles(points,clusters,title = experiment_title)
 
 def parse_experiment_results(filename):
-    filename = f'src/experimental_data/data/results/{filename}'
+    filename = f'src/experiments/data/results/{filename}'
     points = []
     clusters = []
 
