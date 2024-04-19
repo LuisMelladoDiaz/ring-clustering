@@ -2,7 +2,7 @@ from asyncio.windows_events import NULL
 import random
 from experiments.experiment_results import save_results
 from maths.best_fit_circle import best_fit_circle
-from ring_clustering.halting import check_halting
+from ring_clustering.halting import check_halting, compute_convergence
 from ring_clustering.init import Initialization, init_clusters
 from user_interface import drawing_functions
 from ring_clustering.post_processing import remove_equivalent_clusters, remove_noise
@@ -28,10 +28,10 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
     while (halt == False):
         num_iterations +=1
         halt = check_halting(num_iterations,convergence,max_iterations,min_convergence)
-        convergence = 100 #Compute convergence here
         new_clusters = []
         for cluster, pts in classification.items():
             new_clusters.append(best_fit_circle(pts))
+        convergence = compute_convergence(clusters, new_clusters)
         clusters = new_clusters
         membership, classification, points, clusters, error = compute_membership(clusters, points)
         #DRAW RESULT
