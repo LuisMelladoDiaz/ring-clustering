@@ -1,5 +1,7 @@
+from random import randint
 from sympy import symbols, Eq, solve
 import math
+from maths.distances import distance_point_circle, distance_point_point
 
 from maths.sums import *
 
@@ -11,6 +13,11 @@ def best_fit_circle(points):
     radius = compute_radius(A,B,C)
     cluster = ((h,k),radius)
     return cluster
+
+def best_fit_circle_weighted(points, cluster_points, cluster):
+    X,Y = extract_coordinates(points)
+    weighted_points = weight_points(list(zip(X, Y)), cluster_points, cluster)
+    return best_fit_circle(weighted_points)
 
 
 def solve_system(X,Y,n):
@@ -48,3 +55,22 @@ def extract_coordinates(points):
         X.append(x)
         Y.append(y)
     return X,Y
+
+import random
+import math
+
+def weight_points(points, cluster_points, cluster):
+    weighted_points = []
+    max_distance = math.sqrt(100 * 100 + 100 * 100)
+    for p in points:
+        if p in cluster_points:
+            if random.random() <= 0.8:
+                weighted_points.append(p)
+        else:
+            distance = distance_point_circle(p, cluster)
+            normalized_distance = distance / max_distance
+            probability = math.exp(-5 * normalized_distance)
+            random_value = randint(75,100)/100
+            if random_value < probability:
+                weighted_points.append(p)
+    return weighted_points

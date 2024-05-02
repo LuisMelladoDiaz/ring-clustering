@@ -1,7 +1,7 @@
 from asyncio.windows_events import NULL
 import random
 from experiments.experiment_results import save_results
-from maths.best_fit_circle import best_fit_circle
+from maths.best_fit_circle import best_fit_circle, best_fit_circle_weighted
 from ring_clustering.halting import check_halting, compute_convergence
 from ring_clustering.init import Initialization, init_clusters
 from user_interface import drawing_functions
@@ -10,7 +10,7 @@ from utils.cluster_generation import build_clusters
 from maths.distances import compute_membership
 
 
-def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL, allowed_error = NULL, allowed_cluster_equivalence_rate=NULL, title='Experiment'):
+def ring_clustering(points, num_clusters, weighted = True, initialization=Initialization.RANDOM, centers_color = 'kx', max_iterations = 10, min_convergence = NULL, allowed_error = NULL, allowed_cluster_equivalence_rate=NULL, title='Experiment'):
 
     #INITIALIZATION
     centers, radii = init_clusters(num_clusters, initialization, centers_color, points)
@@ -20,6 +20,7 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
     num_iterations = 0
     convergence = 100
 
+    #DRAWING THE PROBLEM
     drawing_functions.draw_points_and_circles(points, clusters, title='Problem')
     membership, classification, points, clusters, error = compute_membership(clusters, points)
     drawing_functions.draw_points_and_circles(points, clusters, title='Initial classes')
@@ -29,20 +30,27 @@ def ring_clustering(points, num_clusters, initialization=Initialization.RANDOM, 
         num_iterations +=1
         halt = check_halting(num_iterations,convergence,max_iterations,min_convergence)
         new_clusters = []
+
         for cluster, pts in classification.items():
-            new_clusters.append(best_fit_circle(pts))
+            if weighted:
+                new_clusters.append(best_fit_circle_weighted(points, pts, clusters[cluster]))
+            else:
+                new_clusters.append(best_fit_circle(pts))
+
         convergence = compute_convergence(clusters, new_clusters)
         clusters = new_clusters
         membership, classification, points, clusters, error = compute_membership(clusters, points)
-        #DRAW RESULT
+
+        #DRAW ITERATION
         drawing_functions.draw_points_and_circles(points, clusters, title=('Iteration',num_iterations))
 
-    #DRAW RESULT
+    #REMOVE NOISE AND DRAW RESULT
     clusters = remove_equivalent_clusters(clusters, allowed_cluster_equivalence_rate)
     membership, classification, points, clusters, error = compute_membership(clusters, points)
     points = remove_noise(points,error,allowed_error)
     drawing_functions.draw_points_and_circles(points, clusters, title='Noise removed')
 
+    #PRINT RESULT
     print('Algorith halted after', num_iterations, 'iteration/s with convergence of', convergence)
     print('Centers', centers)
 

@@ -54,7 +54,6 @@ def parse_points(points_str):
     points_str = points_str.get().strip()[1:-1]
     points_str = points_str.replace('(', '').replace(')', '').split(', ')
     parsed_points = [(float(coord.split(',')[0]), float(coord.split(',')[1])) for coord in points_str]
-    print(points_str)
-    print(parsed_points)
+
 
     return parsed_points

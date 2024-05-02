@@ -40,13 +40,24 @@ def init_centers_predefined(num_clusters):
 def init_centers_heuristic(num_clusters, points):
     centers = []
     radii = []
-    for i in range(0,num_clusters):
-        a, b, c = random.sample(points, 3)
+    sorted_points = sorted(points, key=lambda point: distance_point_point(point, (0,0)))
+    num_points = len(sorted_points)
+    section = num_points//num_clusters
+
+    for i in range(num_clusters):
+
+        a = sorted_points[i*section]
+        index_a = sorted_points.index(a)
+
+        index_b = (index_a + 1) % num_points
+        index_c = (index_a + 2) % num_points
+
+        b = sorted_points[index_b]
+        c = sorted_points[index_c]
+
         center = circumcenter(a, b, c)
         centers.append(center)
-        radii.append(distance_point_point(a,center))
-        print(a,b,c)
-        print(center)
+        radii.append(distance_point_point(a, center))
     return centers, radii
 
 

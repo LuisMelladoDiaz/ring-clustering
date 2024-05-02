@@ -52,7 +52,7 @@ def run_algorithm(root):
         selected_initialization = initialization_combobox.get()
         initialization = Initialization[selected_initialization]
         max_iterations = int(max_iterations_entry.get())
-        min_convergence = 5
+        min_convergence = 0.5
         allowed_error = float(allowed_error_entry.get())
         allowed_cluster_equivalence_rate = float(allowed_cluster_equivalence_rate_entry.get())
         k = int(k_entry.get())
