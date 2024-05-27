@@ -39,7 +39,7 @@ For the purpose of facilitating the study and produce a high number of experimen
 **3.    Maximum uncertainty:** A float number that represent the distance a point can deviate from the circular pattern. In other words, the maximum allowed noise.        
 **4.    Experiment title:** A string that will serve as a name to identify the experiment.         
 
-![image](https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/87c8c223-1892-4496-be27-66064a45f4dc)
+<img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/87c8c223-1892-4496-be27-66064a45f4dc" alt="Generate Experiment" width="600"/>
 
 The tool outputs a .csv file containing a series of randomly generated points that follow the restrictions imposed by inputs 1, 2 and 3. This points compose an experiment over which you can run the algorithm and evaluate the results.
 
@@ -54,7 +54,8 @@ To run the algorithm over a generated or handcrafted experiment you need to prov
 
 When you are ready click on execute algorithm. A figure will pup up showing the problem you selected and the initial classification. Close the figure and wait a little. When the algorithm finishes the final classification of the points will be shown.
 
-![image](https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/f29cf096-89cb-45b6-961e-913fb2558abe)
+<img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/f29cf096-89cb-45b6-961e-913fb2558abe" alt="Run Algorithm Over Experiment" width="600"/>
+
 
 
 What these parameter are and how they relate to the different stages of the algorithm is explained in depth in section II of the Ring-like_Clustering_Scientific_Paper that you can find in this repository.
@@ -62,15 +63,19 @@ When the algorithm is run over an experiment a .csv file is generated so the res
 
 ### 2.3 Revisit Experiment Result
 If you want to see the results of an experiment again you can just click on "Revisit Experiment Results". Provide the csv file name and hit "Results".
-![image](https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/85bf179e-4cca-4e66-9ebe-bcc2c9945891)
+<img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/85bf179e-4cca-4e66-9ebe-bcc2c9945891" alt="Revisit Experiment Result" width="600"/>
+
 
 ### 2.4 Evaluate New Points
 Once the results of an experiment have been produced it is natural to introduce new points and evaluate them to know to which cluster or class they belong to.
 To do so, we can use the “evaluate new points” tool that was implemented. It is necessary to provide:       
 **1.    The experiment results title**: Necessary to scan the experiment resuls and load the points and clusters. Please do not confuse a experiment file with a experiment results file.         
 **2.    A list of the new points** to evaluate in the format [(x1,y1), (x2,y2), … , (xn,yn)]. Be careful, there must be a space between the commas and the next point in the list.        
-Finally, the classification of the new points will be shown. When you evaluate new points the output of the evaluation is not stored in the experiment results file.
-![image](https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/94a2b5b8-6768-4843-b4bd-a5f4ad68563f)
+Finally, the classification of the new points will be shown. When you evaluate new points the output of the evaluation is not stored in the experiment results file.          
+
+
+<img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/94a2b5b8-6768-4843-b4bd-a5f4ad68563f" alt="Evaluate New Points" width="600"/>
+
 
 
 
