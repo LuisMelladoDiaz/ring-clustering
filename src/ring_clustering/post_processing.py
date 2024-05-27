@@ -15,6 +15,7 @@ def remove_noise(points, error, allowed_error):
 def remove_equivalent_clusters(clusters, allowed_cluster_equivalence_rate):
     unequivalent_clusters = clusters
     if allowed_cluster_equivalence_rate != NULL:
+        # FOR EACH CLUSTER PAIR
         for clusterA in clusters:
             centerA, radiusA, *_ = clusterA
             for clusterB in clusters:
@@ -23,6 +24,7 @@ def remove_equivalent_clusters(clusters, allowed_cluster_equivalence_rate):
                     radius_equivalence_rate = 1 - (abs(radiusA-radiusB))/100
                     center_equivalence_rate = 1 - distance_point_point(centerA,centerB)/100
                     equivalence_rate = (radius_equivalence_rate + center_equivalence_rate)/2
+                    # IF THEY ARE TOO SIMILAR REMOVE THEM
                     if equivalence_rate > allowed_cluster_equivalence_rate:
                         unequivalent_clusters.remove(clusterB)
     return unequivalent_clusters

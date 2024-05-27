@@ -5,14 +5,19 @@ from utils.coloring import cluster_coloring, points_coloring
 
 def compute_membership(clusters, points):
     membership = {}
+    normalized_membership_degree = {}
     error = {}
+    # COMPUTE THE MEMBERSHIP OF EACH POINT
     for p in points:
         x,y,*_ = p
         distances = {}
+        # DISTANCE FROM THE POINT TO THE CLUSTER
         for i, c in enumerate(clusters):
             center,radius,*_ = c
             distances[i] = distance_point_circle(p, c)
 
+        normalized_membership_degree[p] = normalize_distances(distances)
+        #print(normalized_membership_degree)
         sorted_clusters = sorted(distances, key=distances.get)
         membership[p] = sorted_clusters
 
@@ -46,3 +51,10 @@ def distance_point_point(pointA, pointB):
 
     distance = math.sqrt((x-a)**2 + (y-b)**2)
     return distance
+
+def normalize_distances(distances):
+    total_distance = sum(distances.values())
+    if total_distance == 0:
+        return {key: 0 for key in distances}
+    normalized_distances = {key: value / total_distance for key, value in distances.items()}
+    return normalized_distances

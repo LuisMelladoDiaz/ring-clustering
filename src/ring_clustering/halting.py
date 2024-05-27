@@ -6,9 +6,11 @@ from maths import mean, distances
 
 def check_halting(iterations, convergence, max_iterations, min_convergence):
     halt = False
+    # CHECK NUMBER OF ITERATIONS
     if (iterations >= max_iterations):
         halt = True
         print("Max iterations reached")
+    # CHECK CONVERGENCE
     if(min_convergence != NULL and convergence <= min_convergence):
         halt = True
         print("Convergence")

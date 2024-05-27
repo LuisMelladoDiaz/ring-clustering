@@ -19,6 +19,7 @@ def ring_clustering(points, num_clusters, weighted = True, initialization=Initia
     halt = False
     num_iterations = 0
     convergence = 100
+    steps = {}
 
     #DRAWING THE PROBLEM
     drawing_functions.draw_points_and_circles(points, clusters, title='Problem')
@@ -31,18 +32,21 @@ def ring_clustering(points, num_clusters, weighted = True, initialization=Initia
         halt = check_halting(num_iterations,convergence,max_iterations,min_convergence)
         new_clusters = []
 
+        # RECOMPUTE CENTERS
         for cluster, pts in classification.items():
             if weighted:
                 new_clusters.append(best_fit_circle_weighted(points, pts, clusters[cluster]))
             else:
                 new_clusters.append(best_fit_circle(pts))
+        steps[num_iterations] = new_clusters
 
+        # UPDATE MEMBERSHIPS
         convergence = compute_convergence(clusters, new_clusters)
         clusters = new_clusters
         membership, classification, points, clusters, error = compute_membership(clusters, points)
 
         #DRAW ITERATION
-        drawing_functions.draw_points_and_circles(points, clusters, title=('Iteration',num_iterations))
+        #drawing_functions.draw_points_and_circles(points, clusters, title=('Iteration',num_iterations))
 
     #REMOVE NOISE AND DRAW RESULT
     clusters = remove_equivalent_clusters(clusters, allowed_cluster_equivalence_rate)
@@ -53,6 +57,7 @@ def ring_clustering(points, num_clusters, weighted = True, initialization=Initia
     #PRINT RESULT
     print('Algorith halted after', num_iterations, 'iteration/s with convergence of', convergence)
     print('Centers', centers)
+    # print('The steps were:', steps)
 
     #SAVE RESULT
     experiment_id = random.randint(1, 1000)
