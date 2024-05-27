@@ -62,7 +62,9 @@ What these parameter are and how they relate to the different stages of the algo
 When the algorithm is run over an experiment a .csv file is generated so the results of the experiment can be revisited. This time the .csv do not only contain the x and y coordinates of a series of poins but also the cluster they belong to (represented by a color).
 
 ### 2.3 Revisit Experiment Result
-If you want to see the results of an experiment again you can just click on "Revisit Experiment Results". Provide the csv file name and hit "Results".
+If you want to see the results of an experiment again you can just click on "Revisit Experiment Results". Provide the csv file name and hit "Results".        
+
+
 <img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/85bf179e-4cca-4e66-9ebe-bcc2c9945891" alt="Revisit Experiment Result" width="600"/>
 
 
