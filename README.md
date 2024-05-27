@@ -2,6 +2,16 @@
 
 ## Table of content
 
+1. **Introduction**
+   - Description of the Problem
+   - Proposed Solution: Clustering
+
+2. **Guide of Use**
+   - 2.1 Generate Experiment
+   - 2.2 Run Algorithm Over Experiment
+   - 2.3 Revisit Experiment Result
+   - 2.4 Evaluate New Points
+
 ## 1 Introduction.
 
 This study addresses a simplified version of a problem encountered in the LHCb experiment at CERN involving the RICH (Ring Imaging Cherenkov) detectors. These detectors aim to identify circular or elliptical patterns resulting from Cherenkov radiation. We abstract the problem to finding optimal ring configurations for a given dataset within a defined spatial range, accounting for noise. Our goal is to minimize error in fitting the data.   
