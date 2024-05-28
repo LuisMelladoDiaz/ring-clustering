@@ -1,6 +1,4 @@
 from asyncio.windows_events import NULL
-from turtle import distance
-
 from maths.distances import distance_point_point
 
 def remove_noise(points, error, allowed_error):
