@@ -11,6 +11,8 @@
    - 2.2 Run Algorithm Over Experiment
    - 2.3 Revisit Experiment Result
    - 2.4 Evaluate New Points
+3. **Folder Structure**
+4. **Dependencies**
 
 ## 1 Introduction.
 
@@ -77,6 +79,34 @@ Finally, the classification of the new points will be shown. When you evaluate n
 
 
 <img src="https://github.com/LuisMelladoDiaz/ring-clustering/assets/93400291/94a2b5b8-6768-4843-b4bd-a5f4ad68563f" alt="Evaluate New Points" width="600"/>
+
+## 3 Folder Structure
+In the source file you can find the following folders:  
+```
+src
+   1. experiments: Contains the necessary functions to generate experiments. Stores the points csv files.
+            1.1 data: Contains the points csv files corresponding to the generated experiments.
+                           1.1.1 results: Stores the points csv files corresponding to the produced results of running the algorithm over an experiment.
+   2. maths: Provides mathematical functions to compute distances, complex sums and the Least-Squares Regression.
+   3. ring_clustering: Contains the different stages of the main algorithm, that is: initialization, main loop, halting and post_processing.
+   4. user_interface: Here the functions to draw graphical representation of points and circles can be found. Also the general tkinter GUI is developed in this folder.
+   5. utils: other functions that did not fit in any of the previous folders. That includes functions to color points and circles and random point generation.
+   main.py
+```
+
+## 4 Dependencies
+In this section I will uncover all the necessary libraries to run the project:
+* tkinter
+* csv
+* math
+* random
+* sympy
+* numpy
+* Enum
+* Os
+These are really simple to install, just run the command pip install <library>.
+
+
 
 
 
