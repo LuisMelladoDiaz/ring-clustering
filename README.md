@@ -1,5 +1,11 @@
 # Ring-like clustering on noisy data
 
+* Repository: https://github.com/LuisMelladoDiaz/ring-clustering
+* Statement: https://github.com/LuisMelladoDiaz/ring-clustering/blob/main/Ring-like_Clustering_Statement.pdf
+* Scientific Paper: https://github.com/LuisMelladoDiaz/ring-clustering/blob/main/Ring-like_Clustering_Scientific_Paper.pdf
+* Experimental Study: https://github.com/LuisMelladoDiaz/ring-clustering/blob/main/Ring-like_Clustering_Experimental_Study.pdf
+* Experimental Study Excel Sheet: https://github.com/LuisMelladoDiaz/ring-clustering/blob/main/Ring-like_Clustering_Experimental_Study.xlsx
+
 ## Table of content
 
 1. **Introduction**
